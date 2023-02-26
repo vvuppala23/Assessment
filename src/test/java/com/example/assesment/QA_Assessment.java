@@ -36,25 +36,20 @@ public class QA_Assessment {
         linksToVisit.offer(url);
 
 
-        // Start the scraping process
         for (int i = 0; i < n && !linksToVisit.isEmpty(); i++) {
             int numLinksVisitedThisCycle = 0;
 
-            // Process all the links in the current cycle
             while (!linksToVisit.isEmpty() && numLinksVisitedThisCycle < MAX_CYCLES) {
                 String currentLink = linksToVisit.poll();
 
-                // Check if we've already visited this link
                 if (visitedLinks.contains(currentLink)) {
                     continue;
                 }
 
-                // Visit the link and get all the links on the page
                 driver.get(currentLink);
                 visitedLinks.add(currentLink);
                 Set<String> linksOnPage = getLinksOnPage(driver);
 
-                // Add the new links to the queue
                 for (String link : linksOnPage) {
                     if (!visitedLinks.contains(link) && isValidWikiLink(link)) {
                         linksToVisit.offer(link);
