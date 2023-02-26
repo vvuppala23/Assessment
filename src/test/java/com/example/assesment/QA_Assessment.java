@@ -80,7 +80,6 @@ public class QA_Assessment {
         return url.startsWith(BASE_URL + "/wiki/");
     }
 
-
     private static Set<String> getLinksOnPage(WebDriver driver) {
         Set<String> linksOnPage = new HashSet<>();
         for (WebElement link : driver.findElements(By.tagName("a"))) {
